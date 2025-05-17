@@ -1,194 +1,176 @@
-html, body {
-  overflow: hidden;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+body {
+font-family: Arial, sans-serif;
+background-color: black;
+display: flex;
+justify-content: center;
+padding: 40px;
+background-image: url(san-valentino\_34629-604.avif);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center center;
+height: 90vh;
+margin: 0;
+font-family: 'Parisienne', cursive;
+font-size: 1.5em;
+overflow-y: none;
 }
 
-body {
-  font-family: 'Parisienne', cursive;
-  background-color: black;
-  background-image: url(san-valentino_34629-604.avif);
-  background-size: cover; 
-  background-repeat: no-repeat;  
-  background-position: center center; 
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;  /* ✅ blocca lo scroll della pagina */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5em;
-}
 .container {
-  width: 350px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.527);
-  padding: 20px;
-  max-height: 600px;
-  display: flex;
-  flex-direction: column;
+width: 350px;
+border-radius: 10px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.527);
+padding: 20px;
+max-height: 600px;
 }
 
 h2 {
-  text-align: center;
-  margin-bottom: 20px;
-    color: rgb(255,255,255);
+text-align: center;
+margin-bottom: 20px;
+color: #ccc;
 }
 
 .todo-input {
-  display: flex;
-  margin-bottom: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.527);
+display: flex;
+margin-bottom: 15px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.527);
 }
 
 .todo-input input {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #cccccc17;
-  border-radius: 5px 0 0 5px;
-  outline: none;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.527);
+flex: 1;
+padding: 8px;
+border: 1px solid #cccccc17;
+border-radius: 5px 0 0 5px;
+outline: none;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.527);
 }
 
 .todo-input button {
-  padding: 8px 12px;
-  background: #ff0000;
-  color: rgb(0, 0, 0);
-  border: none;
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.527);
+padding: 8px 12px;
+background: #ff0000;
+color: rgb(0, 0, 0);
+border: none;
+border-radius: 0 5px 5px 0;
+cursor: pointer;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.527);
 }
 
 label {
-  position: relative; /* per contenere delete button */
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  background: #f7f7f71c;
-  padding: 8px;
-  border-radius: 5px;
-  color: #ccc;
-  user-select: none;
+position: relative;  /\* <<< aggiunto per posizionare il bottone delete \*/
+display: flex;
+align-items: center;
+margin-bottom: 10px;
+background: #f7f7f71c;
+padding: 8px;
+border-radius: 5px;
+color: #ccc;
+user-select: none;
 }
 
-input[type="checkbox"] {
-  margin-right: 10px;
+input\[type="checkbox"] {
+margin-right: 10px;
 }
 
 .done {
-  text-decoration: line-through;
-  color: gray;
+text-decoration: line-through;
+color: gray;
 }
 
-#taskList {
-  flex: 1;              /* prendi tutto lo spazio disponibile */
-  max-height: 470px;
-  overflow-y: auto;     /* scroll solo qui */
-  padding-right: 5px;
-  -webkit-overflow-scrolling: touch; /* scroll fluido su iOS */
+\#taskList {
+max-height: 470px;
+overflow-y: auto;
+padding-right: 5px;
 }
 
-#taskList::-webkit-scrollbar {
-  width: 8px;
+\#taskList::-webkit-scrollbar {
+width: 8px;
 }
 
-#taskList::-webkit-scrollbar-track {
-  background: transparent;
+\#taskList::-webkit-scrollbar-track {
+background: transparent;
 }
 
-#taskList::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-  transition: background-color 0.3s;
+\#taskList::-webkit-scrollbar-thumb {
+background-color: rgba(0, 0, 0, 0.2);
+border-radius: 10px;
+transition: background-color 0.3s;
 }
 
-#taskList::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 0, 0, 0.4);
+\#taskList::-webkit-scrollbar-thumb\:hover {
+background-color: rgba(0, 0, 0, 0.4);
 }
 
-#taskList {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+\#taskList {
+scrollbar-width: thin;
+scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 
 @media (max-width: 480px) {
-  body {
-    padding: 20px;
-    font-size: 1.2em;
-  }
-
-  .container {
-    width: 90%;
-    max-width: 90%;
-    padding: 15px;
-    box-sizing: border-box;
-  }
-
-  .todo-input {
-    flex-direction: column;
-  }
-
-  .todo-input input {
-    border-radius: 5px;
-    margin-bottom: 10px;
-  }
-
-  .todo-input button {
-    border-radius: 5px;
-    width: 100%;
-  }
-
-  #taskList {
-    max-height: 400px;
-  }
+body {
+padding: 20px;
+font-size: 1.2em;
 }
 
-.task-wrapper {
-  position: relative; /* serve per posizionare delete-btn */
-  margin-bottom: 10px;
-}
-
-  .delete-btn {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 80px;
-    background-image: url(sfondoRosaRossa.jpg);
-    background-size: cover; 
-    background-repeat: no-repeat;  
-    background-position: center center; 
-    color: white;
-    border: none;
-    display: none;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 14px;
-    z-index: 10;
-    border-radius: 10px;
-    transition: color 0.3s ease, transform 0.3s ease;
-  }
-
-.delete-btn.show {
-  display: block;
-}
-
-.delete-btn:hover {
-  color: #ff1a1a;
-  transform: scale(1.1);
-}
+```
 .container {
-  max-height: 90vh;
-  display: flex;
+  width: 90%;
+  max-width: 90%;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.todo-input {
   flex-direction: column;
 }
 
-#taskList {
-  overflow-y: auto;
-  max-height: calc(90vh - altezza_elementi_superiori);
-  -webkit-overflow-scrolling: touch;
+.todo-input input {
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
+.todo-input button {
+  border-radius: 5px;
+  width: 100%;
+}
+
+#taskList {
+  max-height: 400px;
+}
+```
+
+}
+
+.task-wrapper {
+position: relative;  /\* serve per far funzionare absolute dei figli */
+margin-bottom: 10px; /* se vuoi distanziare le righe \*/
+}
+
+.delete-btn {
+position: absolute;
+right: 0;
+top: 0;
+bottom: 0;
+width: 80px;
+background-image: url(sfondoRosaRossa.jpg);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center center;
+color: white;
+border: none;
+display: none;
+cursor: pointer;
+font-weight: bold;
+font-size: 14px;
+z-index: 10;
+border-radius: 10px;
+transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.delete-btn.show {
+display: block;
+}
+
+.delete-btn\:hover {
+color: #ff1a1a;
+transform: scale(1.1);
+}
+voglio che il body rimanga fermo senza che si sposti
