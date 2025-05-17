@@ -18,8 +18,10 @@
         <div id="taskList"></div> 
     </div>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+    <!-- Firebase App (compat) -->
+<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+<!-- Firebase Firestore (compat) -->
+<script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
 
 <script>
 const firebaseConfig = {
@@ -33,10 +35,14 @@ const firebaseConfig = {
 };
 
   // Inizializza Firebase
-  const app = firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
+  // Inizializza Firestore
   const db = firebase.firestore();
 </script>
-    
+
+<!-- Il tuo file JS -->
+<script src="sexList.js" defer></script>
+
 
     <script src="sexList.js"></script>
 </body>
