@@ -8,18 +8,19 @@ html, body {
 body {
   font-family: 'Parisienne', cursive;
   background-color: black;
-  display: flex;
-  justify-content: center;
-  padding: 40px;
   background-image: url(san-valentino_34629-604.avif);
   background-size: cover; 
   background-repeat: no-repeat;  
   background-position: center center; 
-  height: 90vh;              
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;  /* ✅ blocca lo scroll della pagina */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1.5em;
-  overflow-y: hidden; /* non scrolla */
 }
-
 .container {
   width: 350px;
   border-radius: 10px;
