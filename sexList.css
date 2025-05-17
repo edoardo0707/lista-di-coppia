@@ -179,4 +179,15 @@ input[type="checkbox"] {
   color: #ff1a1a;
   transform: scale(1.1);
 }
+.container {
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#taskList {
+  overflow-y: auto;
+  max-height: calc(90vh - altezza_elementi_superiori);
+  -webkit-overflow-scrolling: touch;
+}
 
