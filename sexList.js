@@ -1,76 +1,82 @@
 const taskListDiv = document.getElementById('taskList');
 const input = document.getElementById('newTask');
 
-// Carica e mostra le attività
+// Inizializza Firebase
+const firebaseConfig = {
+  apiKey: "TUO_API_KEY",
+  authDomain: "tuo-progetto.firebaseapp.com",
+  projectId: "tuo-progetto",
+  storageBucket: "tuo-progetto.appspot.com",
+  messagingSenderId: "XXX",
+  appId: "XXX"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const tasksCollection = db.collection("sharedTasks");
+
+// Carica e mostra le attività da Firebase
 function loadTasks() {
-  const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  tasksCollection.orderBy("text").get().then(snapshot => {
+    taskListDiv.innerHTML = '';
+    snapshot.forEach(doc => {
+      const task = doc.data();
+      const id = doc.id;
 
-  // Ordina alfabeticamente (case-insensitive)
-  tasks.sort((a, b) => a.text.localeCompare(b.text, 'it', { sensitivity: 'base' }));
+      const label = document.createElement('label');
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.checked = task.done;
+      checkbox.onchange = () => toggleTask(id, task.done);
 
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+      const span = document.createElement('span');
+      span.textContent = task.text;
+      if (task.done) span.classList.add('done');
 
-  taskListDiv.innerHTML = '';
-
-  tasks.forEach((task, index) => {
-    const label = document.createElement('label');
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.checked = task.done;
-    checkbox.onchange = () => toggleTask(index);
-
-    const span = document.createElement('span');
-    span.textContent = task.text;
-    if (task.done) span.classList.add('done');
-
-    label.appendChild(checkbox);
-    label.appendChild(span);
-
-    // Aggiungo il pulsante elimina con long press
-    addDeleteButtonWithLongPress(label, index);
-
-    taskListDiv.appendChild(label);
+      label.appendChild(checkbox);
+      label.appendChild(span);
+      addDeleteButtonWithLongPress(label, id);
+      taskListDiv.appendChild(label);
+    });
   });
 }
 
-// Aggiungi una nuova attività
+// Aggiunge una nuova attività
 function addTask() {
   const text = input.value.trim();
   if (!text) return;
 
-  const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-  tasks.push({ text, done: false });
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-  input.value = '';
-  loadTasks(); // verrà riordinata automaticamente
+  tasksCollection.add({ text: text, done: false }).then(() => {
+    input.value = '';
+    loadTasks();
+  });
 }
 
-// Cambia lo stato della checkbox
-function toggleTask(index) {
-  const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-  tasks[index].done = !tasks[index].done;
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-  loadTasks();
+// Cambia lo stato della task
+function toggleTask(id, done) {
+  tasksCollection.doc(id).update({ done: !done }).then(loadTasks);
 }
 
-// Funzione che aggiunge il bottone elimina con long press + animazioni
-function addDeleteButtonWithLongPress(label, taskIndex) {
+// Rimuove una task
+function removeTask(id) {
+  tasksCollection.doc(id).delete().then(loadTasks);
+}
+
+// Bottone con pressione lunga per eliminare
+function addDeleteButtonWithLongPress(label, taskId) {
   let pressTimer;
 
   const deleteBtn = document.createElement('button');
   deleteBtn.textContent = '✖';
   deleteBtn.classList.add('delete-btn');
-  deleteBtn.style.marginLeft = 'auto';
 
-  // Rimuovi task al clic del bottone
   deleteBtn.onclick = (e) => {
     e.stopPropagation();
-    removeTask(taskIndex);
+    removeTask(taskId);
   };
 
   label.appendChild(deleteBtn);
 
-  // Mostra il bottone dopo 1 secondo di pressione
   label.addEventListener('mousedown', () => {
     pressTimer = setTimeout(() => {
       deleteBtn.classList.add('show');
@@ -80,7 +86,6 @@ function addDeleteButtonWithLongPress(label, taskIndex) {
   label.addEventListener('mouseup', () => clearTimeout(pressTimer));
   label.addEventListener('mouseleave', () => clearTimeout(pressTimer));
 
-  // Nascondi il bottone se clicchi fuori
   document.addEventListener('click', (e) => {
     if (!label.contains(e.target)) {
       deleteBtn.classList.remove('show');
@@ -88,13 +93,6 @@ function addDeleteButtonWithLongPress(label, taskIndex) {
   });
 }
 
-// Rimuove la task e aggiorna storage + lista
-function removeTask(index) {
-  const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-  tasks.splice(index, 1);
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-  loadTasks();
-}
-
-// Caricamento iniziale
+// Avvia caricamento
 window.onload = loadTasks;
+
