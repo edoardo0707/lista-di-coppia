@@ -1,8 +1,10 @@
 const taskListDiv = document.getElementById('taskList');
 const input = document.getElementById('newTask');
 
+// Usa la variabile db già definita globalmente (dal tuo HTML)
 const db = window.db || firebase.firestore();
 window.db = db;
+
 const tasksRef = db.collection("tasks");
 
 // Mostra attività in tempo reale
@@ -38,13 +40,12 @@ function addTask() {
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
   }).then(() => {
     input.value = '';
-  }).catch(e => console.error("Errore aggiungendo task:", e));
+  });
 }
 
 // Cambia stato attività
 function toggleTask(id, currentDoneStatus) {
   tasksRef.doc(id).update({
     done: !currentDoneStatus
-  }).catch(e => console.error("Errore aggiornando task:", e));
+  });
 }
-
