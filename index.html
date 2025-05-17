@@ -15,8 +15,27 @@
           <button onclick="addTask()">Aggiungi</button>
         </div>
         
-        <div id="taskList"></div> <!-- solo questo scrolla -->
+        <div id="taskList"></div> 
     </div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDY0aeJQiMUrJ3h_gdtvCCypQVd_PIn650",
+  authDomain: "lista-di-coppia.firebaseapp.com",
+  projectId: "lista-di-coppia",
+  storageBucket: "lista-di-coppia.firebasestorage.app",
+  messagingSenderId: "588955586283",
+  appId: "1:588955586283:web:d40e9adc9845ff2f0338ae",
+  measurementId: "G-KS8SM2Q0E9"
+};
+
+  // Inizializza Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
     
 
     <script src="sexList.js"></script>
