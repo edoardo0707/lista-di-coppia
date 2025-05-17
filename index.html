@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sex List</title>
   <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="sexList.css" />
-  <title>Sex List</title>
 </head>
 <body>
   <div class="container">
@@ -14,6 +14,7 @@
       <input type="text" id="newTask" placeholder="Scrivi qui una cosa da fare..." />
       <button onclick="addTask()">Aggiungi</button>
     </div>
+
     <div id="taskList"></div>
   </div>
 
@@ -23,6 +24,7 @@
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
 
   <script>
+    // Config Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyDY0aeJQiMUrJ3h_gdtvCCypQVd_PIn650",
       authDomain: "lista-di-coppia.firebaseapp.com",
@@ -35,10 +37,11 @@
 
     // Inizializza Firebase
     firebase.initializeApp(firebaseConfig);
+    // Inizializza Firestore una volta
     const db = firebase.firestore();
-    window.db = db; // condividiamo la variabile db a livello globale
   </script>
 
+  <!-- Il tuo JS con la logica della app -->
   <script src="sexList.js"></script>
 </body>
 </html>
