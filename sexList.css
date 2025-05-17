@@ -149,26 +149,23 @@ input[type="checkbox"] {
   margin-bottom: 10px;
 }
 
-  .delete-btn {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 80px;
-    background-image: url(sfondoRosaRossa.jpg);
-    background-size: cover; 
-    background-repeat: no-repeat;  
-    background-position: center center; 
-    color: white;
-    border: none;
-    display: none;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 14px;
-    z-index: 10;
-    border-radius: 10px;
-    transition: color 0.3s ease, transform 0.3s ease;
-  }
+.delete-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  display: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  z-index: 10;
+  border-radius: 0 5px 5px 0;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
 
 .delete-btn.show {
   display: block;
@@ -178,3 +175,4 @@ input[type="checkbox"] {
   color: #ff1a1a;
   transform: scale(1.1);
 }
+
