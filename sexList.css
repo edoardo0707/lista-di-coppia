@@ -16,7 +16,7 @@ body {
     margin: 0;    
     font-family: 'Parisienne', cursive;
     font-size: 1.5em;
-    overflow-y: none;
+    overflow-y: hidden;
   }
   
   .container {
