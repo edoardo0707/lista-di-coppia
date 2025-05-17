@@ -33,7 +33,13 @@ body {
 h2 {
   text-align: center;
   margin-bottom: 20px;
-  background-image: url(sfondoRosaRossa.jpg);
+  background-image: url(sfondoRosaRossa.jpg) no-repeat center center;
+    background-size: cover;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* per Firefox */
+  background-clip: text;
+  color: transparent;
 }
 
 .todo-input {
