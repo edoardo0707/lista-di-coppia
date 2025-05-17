@@ -1,13 +1,10 @@
 const taskListDiv = document.getElementById('taskList');
 const input = document.getElementById('newTask');
 
-// Usa la variabile db già definita globalmente (dal tuo HTML)
-const db = window.db || firebase.firestore();
-window.db = db;
-
+// Usa la variabile db già dichiarata in HTML
 const tasksRef = db.collection("tasks");
 
-// Mostra attività in tempo reale
+// Mostra attività in tempo reale, ordina per testo
 tasksRef.orderBy("text").onSnapshot(snapshot => {
   taskListDiv.innerHTML = '';
   snapshot.forEach(doc => {
@@ -29,7 +26,7 @@ tasksRef.orderBy("text").onSnapshot(snapshot => {
   });
 });
 
-// Aggiungi una nuova attività
+// Aggiungi nuova task a Firestore
 function addTask() {
   const text = input.value.trim();
   if (!text) return;
@@ -43,7 +40,7 @@ function addTask() {
   });
 }
 
-// Cambia stato attività
+// Cambia stato della task
 function toggleTask(id, currentDoneStatus) {
   tasksRef.doc(id).update({
     done: !currentDoneStatus
