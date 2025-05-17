@@ -87,6 +87,7 @@ input[type="checkbox"] {
   max-height: 470px;
   overflow-y: auto;     /* scroll solo qui */
   padding-right: 5px;
+  -webkit-overflow-scrolling: touch; /* scroll fluido su iOS */
 }
 
 #taskList::-webkit-scrollbar {
