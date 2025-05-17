@@ -1,51 +1,49 @@
 const taskListDiv = document.getElementById('taskList');
 const input = document.getElementById('newTask');
 
-// Carica e mostra le attività
-function loadTasks() {
-  const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+// Inizializza Firebase (usa già il config nel tuo HTML)
+const db = firebase.firestore();
+const tasksRef = db.collection("tasks");
 
-  // Ordina alfabeticamente (case-insensitive)
-  tasks.sort((a, b) => a.text.localeCompare(b.text, 'it', { sensitivity: 'base' }));
-
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-
+// Mostra attività in tempo reale
+tasksRef.orderBy("text").onSnapshot(snapshot => {
   taskListDiv.innerHTML = '';
-
-  tasks.forEach((task, index) => {
+  snapshot.forEach(doc => {
+    const task = doc.data();
     const label = document.createElement('label');
+
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = task.done;
-    checkbox.onchange = () => toggleTask(index);
+    checkbox.onchange = () => toggleTask(doc.id, task.done);
+
     const span = document.createElement('span');
     span.textContent = task.text;
     if (task.done) span.classList.add('done');
+
     label.appendChild(checkbox);
     label.appendChild(span);
     taskListDiv.appendChild(label);
   });
-}
+});
 
 // Aggiungi una nuova attività
 function addTask() {
   const text = input.value.trim();
   if (!text) return;
 
-  const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-  tasks.push({ text, done: false });
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-  input.value = '';
-  loadTasks(); // verrà riordinata automaticamente
+  tasksRef.add({
+    text: text,
+    done: false,
+    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  }).then(() => {
+    input.value = '';
+  });
 }
 
-// Cambia lo stato della checkbox
-function toggleTask(index) {
-  const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-  tasks[index].done = !tasks[index].done;
-  localStorage.setItem('tasks', JSON.stringify(tasks));
-  loadTasks();
+// Cambia stato attività
+function toggleTask(id, currentDoneStatus) {
+  tasksRef.doc(id).update({
+    done: !currentDoneStatus
+  });
 }
-
-// Caricamento iniziale
-window.onload = loadTasks;
