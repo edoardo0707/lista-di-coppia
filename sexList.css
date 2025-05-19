@@ -14,6 +14,9 @@ body {
     font-size: 1.5em;
     overflow-y: none;   
   }
+input, button {
+  font-size: 16px; /* impedisce zoom automatico su iOS */
+}
   
   .container {
     width: 350px;
