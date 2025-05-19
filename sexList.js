@@ -1,3 +1,4 @@
+
 const taskListDiv = document.getElementById('taskList');
 const input = document.getElementById('newTask');
 const tasksRef = db.collection("tasks");
@@ -152,3 +153,7 @@ function toggleTask(id, currentDoneStatus) {
     done: !currentDoneStatus
   });
 }
+  function toggleMenu() {
+    const menu = document.getElementById('slideMenu');
+    menu.classList.toggle('show');
+  }
