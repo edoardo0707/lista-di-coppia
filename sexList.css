@@ -38,6 +38,7 @@ input, button {
     justify-content: space-between; /* oppure 'flex-end' se vuoi il bottone a destra */
     align-items: center; /* allinea verticalmente al centro */
     margin-bottom: 20px;
+    margin-left: 1%;
   }
   
   .header h2 {
