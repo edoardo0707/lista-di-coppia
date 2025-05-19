@@ -11,14 +11,15 @@ body {
     background-image: url(san-valentino_34629-604.avif);
     background-size: cover; 
     background-repeat: no-repeat;  
-    background-position: center center; 
-    height: 90vh;              
-    margin: 0;    
+    background-position: center center;                
     font-family: 'Parisienne', cursive;
-    font-size: 1.5em;
-    overflow-y: none;   
+    font-size: 1.5em; 
     overscroll-behavior: none;
-  touch-action: none;
+    touch-action: none;
+    margin: 0;
+    height: 100%;
+    overflow: hidden; /* Blocco totale dello scroll */
+
   }
 input, button {
   font-size: 16px; /* impedisce zoom automatico su iOS */
