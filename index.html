@@ -4,6 +4,7 @@
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Sex List</title>
   <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="manifest" href="/manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -18,7 +19,16 @@
 </head>
 <body>
   <div class="container">
-    <h2>Sexy Point</h2>
+    <div class="header">
+      <h2>Sexy Point</h2>
+      <button class="menu"><i class="fa-solid fa-bars" style="color: #ffffff;border: #ffffff00;" onclick="toggleMenu()"></i></button>
+    </div>
+    <div class="slide-menu" id="slideMenu">
+      <div class="menu-item">Posti</div>
+      <div class="menu-item">Località</div>
+      <div class="menu-item">Calendario</div>
+    </div>
+
     <div class="todo-input">
       <input type="text" id="newTask" placeholder="Dove lo vuoi fare?..." />
       <button onclick="addTask()">Aggiungi</button>
