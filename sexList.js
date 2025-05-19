@@ -157,3 +157,17 @@ function toggleTask(id, currentDoneStatus) {
     const menu = document.getElementById('slideMenu');
     menu.classList.toggle('show');
   }
+  window.addEventListener("DOMContentLoaded", () => {
+    const video = document.getElementById("loaderVideo");
+    video.playbackRate = 2.0; // Velocità: 2x
+
+    // Nasconde il loader dopo 4 secondi
+    setTimeout(() => {
+      const loader = document.getElementById("loader");
+      loader.style.transition = "opacity 0.5s ease";
+      loader.style.opacity = "0";
+      setTimeout(() => {
+        loader.remove();
+      }, 500);
+    }, 4000);
+  });
