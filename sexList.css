@@ -17,6 +17,8 @@ body {
     font-family: 'Parisienne', cursive;
     font-size: 1.5em;
     overflow-y: none;   
+    overscroll-behavior: none;
+  touch-action: none;
   }
 input, button {
   font-size: 16px; /* impedisce zoom automatico su iOS */
