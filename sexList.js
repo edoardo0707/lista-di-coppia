@@ -207,7 +207,7 @@ function loadCitiesFromFirestore() {
 }
 
 const globe = Globe()
-  .globeImageUrl('jpeg-optimizer_world.topo.bathy.200412.3x21600x10800.jpg')
+  .globeImageUrl('world.topo.bathy.200412.3x5400x2700.jpg')
   .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
   .backgroundImageUrl('https://unpkg.com/three-globe/example/img/night-sky.png')
   .pointsData(cities)
