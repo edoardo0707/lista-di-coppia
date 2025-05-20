@@ -27,39 +27,69 @@
     </video>
   </div>
   
-  <div class="container">
-    <div class="header">
-      <h2>Sexy Point</h2>
-      <button class="menu"><i class="fa-solid fa-bars" style="color: #ffffff;border: #ffffff00;" onclick="toggleMenu()"></i></button>
-    </div>
+<div class="container">
+  <div class="header">
+    <h2>Sexy Point</h2>
+    <button class="menu" onclick="toggleMenu()">
+      <i class="fa-solid fa-bars" style="color: #ffffff; border: #ffffff00;"></i>
+    </button>
+  </div>
 
-    <div id="localita" class="section hidden"> <!--localita-->
-        <div id="cityInputContainer">
-          <input id="cityInput" type="text" placeholder="Inserisci una città dove lo hai fatto" autocomplete="off" style="color: #ffffff;" />
-          <div id="cityList"></div>
+  <div id="container3" class="container3">
+    <div id="inner-content">
+      <section class="sezione">
+        <h2>Luoghi da provare</h2>
+        <div class="card">
+          <div class="card-title">🏖️ Spiaggia di notte</div>
+          <div class="card-meta">📍 50% completato</div>
+          <div class="card-note">💬 “Da rifare assolutamente”</div>
         </div>
+      </section>
 
-        <div id="globeViz"></div>
+      <section class="sezione">
+        <h2>Prossimi appuntamenti</h2>
+        <div class="card">
+          <div class="card-title">🥂 Cena romantica</div>
+          <div class="card-meta">🗓️ 24 Maggio</div>
+        </div>
+        <div class="card">
+          <div class="card-title">❤️ Notte hot</div>
+          <div class="card-meta">🗓️ 27 Maggio</div>
+        </div>
+      </section>
 
-        <script src="https://unpkg.com/three@0.150.1/build/three.min.js"></script>
-        <script src="https://unpkg.com/three-globe"></script>
-        <script src="https://unpkg.com/globe.gl"></script>
-    </div>
-
-      <div class="slide-menu" id="slideMenu">  <!--menu-->
-        <div class="menu-item" onclick="toggleContainer('posti')">Posti</div>
-        <div class="menu-item" onclick="toggleContainer('localita')">Località</div>
-        <div class="menu-item">Calendario</div>
-      </div>
-    <div id="posti" class="section hidden">  <!--posti-->
-      <div class="todo-input">
-        <input type="text" id="newTask" placeholder="Dove lo vuoi fare?..." />
-        <button onclick="addTask()">Aggiungi</button>
-      </div>
-
-      <div id="taskList"></div>
+      <section class="sezione">
+        <h2>Idea del giorno</h2>
+        <div class="daily-tip">💡 Provate la doccia insieme domani mattina 🌧️💋</div>
+      </section>
     </div>
   </div>
+
+  <div id="localita" class="section hidden">
+    <div id="cityInputContainer">
+      <input id="cityInput" type="text" placeholder="Inserisci una città dove lo hai fatto" autocomplete="off" style="color: #ffffff;" />
+      <div id="cityList"></div>
+    </div>
+    <div id="globeViz"></div>
+    <script src="https://unpkg.com/three@0.150.1/build/three.min.js"></script>
+    <script src="https://unpkg.com/three-globe"></script>
+    <script src="https://unpkg.com/globe.gl"></script>
+  </div>
+
+  <div class="slide-menu" id="slideMenu">
+    <div class="menu-item" onclick="toggleContainer('posti')">Posti</div>
+    <div class="menu-item" onclick="toggleContainer('localita')">Località</div>
+    <div class="menu-item">Calendario</div>
+  </div>
+
+  <div id="posti" class="section hidden">
+    <div class="todo-input">
+      <input type="text" id="newTask" placeholder="Dove lo vuoi fare?..." />
+      <button onclick="addTask()">Aggiungi</button>
+    </div>
+    <div id="taskList"></div>
+  </div>
+</div>
 
   </div>
 
