@@ -5,6 +5,7 @@
   <title>Sex List</title>
   <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
   <link rel="manifest" href="/manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -31,18 +32,35 @@
       <h2>Sexy Point</h2>
       <button class="menu"><i class="fa-solid fa-bars" style="color: #ffffff;border: #ffffff00;" onclick="toggleMenu()"></i></button>
     </div>
-    <div class="slide-menu" id="slideMenu">
-      <div class="menu-item">Posti</div>
-      <div class="menu-item">Località</div>
-      <div class="menu-item">Calendario</div>
+
+    <div id="localita" class="section hidden"> <!--localita-->
+        <div id="cityInputContainer">
+          <input id="cityInput" type="text" placeholder="Inserisci una città e premi Invio" autocomplete="off" />
+          <div id="cityList"></div>
+        </div>
+
+        <div id="globeViz"></div>
+
+        <script src="https://unpkg.com/three@0.150.1/build/three.min.js"></script>
+        <script src="https://unpkg.com/three-globe"></script>
+        <script src="https://unpkg.com/globe.gl"></script>
     </div>
 
-    <div class="todo-input">
-      <input type="text" id="newTask" placeholder="Dove lo vuoi fare?..." />
-      <button onclick="addTask()">Aggiungi</button>
-    </div>
+      <div class="slide-menu" id="slideMenu">  <!--menu-->
+        <div class="menu-item" onclick="toggleContainer('posti')">Posti</div>
+        <div class="menu-item" onclick="toggleContainer('localita')">Località</div>
+        <div class="menu-item">Calendario</div>
+      </div>
+    <div id="posti" class="section hidden">  <!--posti-->
+      <div class="todo-input">
+        <input type="text" id="newTask" placeholder="Dove lo vuoi fare?..." />
+        <button onclick="addTask()">Aggiungi</button>
+      </div>
 
-    <div id="taskList"></div>
+      <div id="taskList"></div>
+    </div>
+  </div>
+
   </div>
 
   <!-- Firebase App (compat) -->
