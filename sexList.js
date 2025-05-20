@@ -172,23 +172,47 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function toggleContainer(id) {
-  const element = document.getElementById(id);
-  if (!element) return;
-
+  const container3 = document.getElementById('container3');
+  const target = document.getElementById(id);
   const allSections = document.querySelectorAll('.section');
-  const isVisible = !element.classList.contains('hidden');
 
-  allSections.forEach(el => el.classList.add('hidden'));
+  if (!container3 || !target) return;
 
-  if (!isVisible) {
-    element.classList.remove('hidden');
+  const isTargetVisible = !target.classList.contains('hidden');
+
+  // Nascondi tutte le sezioni
+  allSections.forEach(section => section.classList.add('hidden'));
+
+  if (!isTargetVisible) {
+    // Mostra la sezione richiesta
+    target.classList.remove('hidden');
+    container3.style.display = 'none'; // Nascondi completamente container3
+  } else {
+    // Nessuna sezione è visibile
+    container3.style.display = 'flex'; // Mostra container3
   }
 
+  // Verifica se almeno una sezione (diversa da container3) è visibile
+  const visibleSections = Array.from(allSections).filter(section => {
+    return section.id !== 'container3' && !section.classList.contains('hidden');
+  });
+
+  // Se almeno una è visibile, nascondi container3
+  if (visibleSections.length > 0) {
+    container3.style.display = 'none';
+  } else {
+    container3.style.display = 'flex';
+  }
+
+  // Chiudi il menu se aperto
   const menu = document.querySelector('.slide-menu');
-  if (menu && menu.classList.contains('show')) {
+  if (menu?.classList.contains('show')) {
     menu.classList.remove('show');
   }
 }
+
+
+
 
 const cities = [];
 
