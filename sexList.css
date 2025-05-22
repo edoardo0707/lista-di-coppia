@@ -269,8 +269,8 @@ input, button {
 
 #globeViz {
   position: absolute;
-  top: -30%;
-  left: -1%;
+  top: -15%;
+  left: -7%;
   width: 100%;
   height: 100%;
   border-radius: 10px;
@@ -417,7 +417,7 @@ input, button {
   width: 96%;
   max-width: 1000px;
   margin: 0 auto;
-  height: auto;
+  max-height: 90%;
   padding: 2rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
@@ -470,7 +470,7 @@ input, button {
 }
 
 .daily-tip {
-  background-color: #262626;
+  background-color: #1a1a1a62;
   border-left: 40% solid gold;
   padding: 1rem;
   border-radius: 10px;
@@ -508,13 +508,12 @@ input, button {
     .calendar-header h2 {
       position: relative;
       margin: 0;
+      font-size: 1.4rem;
     }
     #prev , #next{
-      background-color: rgba(0, 0, 0, 0.247);
-      border: solid rgba(0, 0, 0, 0.075);
+      background-color: rgba(0, 0, 0, 0);
+      border: solid rgba(0, 0, 0, 0);
       border-radius: 20px;
-      width: 15%;
-      height: 30%;
       color: white;
       align-items: center;
       justify-content: center;
@@ -550,7 +549,7 @@ input, button {
       cursor: pointer;
       background: #ffffff25;
       transition: background 0.2s;
-
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
