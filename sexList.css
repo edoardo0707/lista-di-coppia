@@ -509,7 +509,14 @@ input, button {
       position: relative;
       margin: 0;
     }
-
+    #prev , #next{
+      background-color: rgba(0, 0, 0, 0.247);
+      border: solid rgba(0, 0, 0, 0.075);
+      border-radius: 20px;
+      width: 15%;
+      height: 30%;
+      color: white;
+    }
     .calendar button {
       background: none;
       border: none;
