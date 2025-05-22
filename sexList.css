@@ -516,6 +516,9 @@ input, button {
       width: 15%;
       height: 30%;
       color: white;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
     }
     .calendar button {
       background: none;
@@ -545,7 +548,7 @@ input, button {
       font-size: 1.1rem;
       border-radius: 12px;
       cursor: pointer;
-      background: #f9f9f9;
+      background: #ffffff25;
       transition: background 0.2s;
 
       display: flex;
