@@ -478,9 +478,9 @@ async function openDayDetail(year, month, day) {
     </div>
     <div class="input-group">
       <label>Promemoria</label>
-      <textarea id="reminderInput" placeholder="Aggiungi promemoria..." style="color: #000000;">${contentObj.reminder || ''}</textarea>
+      <textarea id="reminderInput" placeholder="Aggiungi promemoria..." style="color:rgb(0, 0, 0);">${contentObj.reminder || ''}</textarea>
     </div>
-    <div class="icon-checkboxes">
+    <div class="icon-checkboxes" style="color:rgb(255, 255, 255);">
       <label><input type="checkbox" id="icon0" ${contentObj.icons?.[0] ? 'checked' : ''}>sex</label>
       <label><input type="checkbox" id="icon1" ${contentObj.icons?.[1] ? 'checked' : ''}>bocchino</label>
       <label><input type="checkbox" id="icon2" ${contentObj.icons?.[2] ? 'checked' : ''}>ditalino</label>
@@ -614,3 +614,27 @@ nextBtn.onclick = () => {
 
 // -- RENDER INIZIALE --
 renderMonthWithData(currentDate);
+
+function renderHorizontalTaskCards() {
+  const container = document.getElementById("taskCardContainer");
+  if (!container) return;
+
+  tasksRef.where("done", "==", false).orderBy("text").onSnapshot(snapshot => {
+    container.innerHTML = '';
+
+    snapshot.forEach(doc => {
+      const task = doc.data();
+
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const title = document.createElement("div");
+      title.className = "card-title";
+      title.textContent = task.text;
+
+      card.appendChild(title);
+      container.appendChild(card);
+    });
+  });
+}
+renderHorizontalTaskCards();
