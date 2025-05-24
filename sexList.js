@@ -353,6 +353,30 @@ input2.addEventListener('keydown', async e => {
 // Avvia caricamento città da Firestore
 loadCitiesFromFirestore();
 
+function renderHorizontalTaskCards() {
+  const container = document.getElementById("taskCardContainer");
+  if (!container) return;
+
+  tasksRef.where("done", "==", false).orderBy("text").onSnapshot(snapshot => {
+    container.innerHTML = '';
+
+    snapshot.forEach(doc => {
+      const task = doc.data();
+
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const title = document.createElement("div");
+      title.className = "card-title";
+      title.textContent = task.text;
+
+      card.appendChild(title);
+      container.appendChild(card);
+    });
+  });
+}
+renderHorizontalTaskCards();
+
 const daysContainer = document.getElementById('days');
 const monthYear = document.getElementById('monthYear');
 const prevBtn = document.getElementById('prev');
@@ -614,27 +638,3 @@ nextBtn.onclick = () => {
 
 // -- RENDER INIZIALE --
 renderMonthWithData(currentDate);
-
-function renderHorizontalTaskCards() {
-  const container = document.getElementById("taskCardContainer");
-  if (!container) return;
-
-  tasksRef.where("done", "==", false).orderBy("text").onSnapshot(snapshot => {
-    container.innerHTML = '';
-
-    snapshot.forEach(doc => {
-      const task = doc.data();
-
-      const card = document.createElement("div");
-      card.className = "card";
-
-      const title = document.createElement("div");
-      title.className = "card-title";
-      title.textContent = task.text;
-
-      card.appendChild(title);
-      container.appendChild(card);
-    });
-  });
-}
-renderHorizontalTaskCards();
