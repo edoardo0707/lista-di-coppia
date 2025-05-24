@@ -438,8 +438,8 @@ input, button {
 .sezione h2 {
   color: gold;
   font-size: 1.4rem;
-  margin-bottom: 1rem;
   text-align: center;
+  margin-top: 2rem;
 }
 
 .card {
@@ -518,6 +518,10 @@ input, button {
       align-items: center;
       justify-content: center;
       align-content: center;
+    }
+    #prev img, #next img{
+      width: 40%;
+      height: 40%;
     }
     .calendar button {
       background: none;
@@ -710,6 +714,7 @@ input, button {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none; /* Firefox */
   max-width: 100%;
+  color:rgb(255, 255, 255);
 }
 
 .icon-checkboxes::-webkit-scrollbar {
@@ -727,7 +732,8 @@ input, button {
   padding: 6px 12px;
   border-radius: 12px;
   white-space: nowrap;
-  color: #000000;
+  color: #ffffff;
+  height: 4vh;
 }
 
 /* --- Responsività totale --- */
@@ -752,7 +758,7 @@ input, button {
   /* Icone più piccole e meno padding */
   .icon-checkboxes label {
     font-size: 1.4rem;
-    padding: 5px 10px;
+    padding: 2px 10px;
   }
 }
 
@@ -786,6 +792,40 @@ input, button {
   /* Icone ancora più compatte */
   .icon-checkboxes label {
     font-size: 1.2rem;
-    padding: 4px 8px;
+    padding: 0px 8px;
   }
 }
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-container .card {
+  flex: 0 0 auto;
+  min-width: 180px;
+  max-width: 250px;
+  width: 90%;
+  background-color: #1a1a1a62;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 1rem;
+  scroll-snap-align: start;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.scroll-container .card-title {
+  font-size: 1.5rem;
+  color: #ff0000;
+  font-weight: bold;
+  
+}
+
+
