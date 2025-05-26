@@ -1,15 +1,31 @@
-// === FIREBASE REFERENCES ===
-const db = firebase.firestore();
-const tasksRef = db.collection("tasks");
-const citiesRef = db.collection("cities");
-const calendarRef = db.collection("calendarDays");
+// Esempio per tasks
+function tasksRef() {
+  return db.collection("couples").doc(coupleId).collection("tasks");
+}
+// Esempio per cities
+function citiesRef() {
+  return db.collection("couples").doc(coupleId).collection("cities");
+}
+// Esempio per calendario
+function calendarRef() {
+  return db.collection("couples").doc(coupleId).collection("calendarDays");
+}
+
+// ...tutto il resto del tuo codice invariato...
+
+const daysContainer = document.getElementById('days');
+const monthYear = document.getElementById('monthYear');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+const detailBox = document.getElementById('dayDetail');
 
 // === TASK LIST LOGIC ===
 const taskListDiv = document.getElementById('taskList');
 const inputTask = document.getElementById('newTask');
+let dayContents = {};
 
 function renderTaskList() {
-  tasksRef.orderBy("text").onSnapshot(snapshot => {
+  tasksRef().orderBy("text").onSnapshot(snapshot => {
     taskListDiv.innerHTML = '';
 
     snapshot.forEach(doc => {
@@ -40,7 +56,7 @@ function renderTaskList() {
       deleteBtn.textContent = 'Elimina';
       deleteBtn.className = 'delete-btn';
       deleteBtn.style.display = 'none';
-      deleteBtn.onclick = () => tasksRef.doc(taskId).delete();
+      deleteBtn.onclick = () => tasksRef().doc(taskId).delete();
 
       taskWrapper.appendChild(label);
       taskWrapper.appendChild(deleteBtn);
@@ -109,7 +125,7 @@ function addSwipeToDelete(label, deleteBtn, taskWrapper) {
 function addTask() {
   const text = inputTask.value.trim();
   if (!text) return;
-  tasksRef.add({
+  tasksRef().add({
     text,
     done: false,
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -117,13 +133,13 @@ function addTask() {
 }
 
 function toggleTask(id, done) {
-  tasksRef.doc(id).update({ done: !done });
+  tasksRef().doc(id).update({ done: !done });
 }
 
 function renderHorizontalTaskCards() {
   const container = document.getElementById("taskCardContainer");
   if (!container) return;
-  tasksRef.where("done", "==", false).orderBy("text").onSnapshot(snapshot => {
+  tasksRef().where("done", "==", false).orderBy("text").onSnapshot(snapshot => {
     container.innerHTML = '';
     snapshot.forEach(doc => {
       const task = doc.data();
@@ -156,8 +172,6 @@ window.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => loader.remove(), 500);
     }
   }, 4000);
-  renderTaskList();
-  renderHorizontalTaskCards();
 });
 
 // Section navigation
@@ -205,7 +219,7 @@ const globe = Globe()
 globe(document.getElementById('globeViz'));
 
 function loadCitiesFromFirestore() {
-  citiesRef.onSnapshot(snapshot => {
+  citiesRef().onSnapshot(snapshot => {
     cities.length = 0;
     snapshot.forEach(doc => {
       const city = doc.data();
@@ -250,13 +264,13 @@ function removeCity(docId) {
     cities.splice(index, 1);
     globe.pointsData(cities);
     updateCityList();
-    citiesRef.doc(docId).delete().catch(console.error);
+    citiesRef().doc(docId).delete().catch(console.error);
   }
 }
 
 function saveCityToFirestore(city) {
   const cityId = city.name.toLowerCase().replace(/\s+/g, '_');
-  citiesRef.doc(cityId).set(city).catch(console.error);
+  citiesRef().doc(cityId).set(city).catch(console.error);
 }
 
 async function geocodeCity(cityName) {
@@ -296,31 +310,23 @@ cityInput.addEventListener('keydown', async e => {
   }
 });
 
-// Start listening to cities
-loadCitiesFromFirestore();
 
 // === CALENDAR LOGIC ===
-const daysContainer = document.getElementById('days');
-const monthYear = document.getElementById('monthYear');
-const prevBtn = document.getElementById('prev');
-const nextBtn = document.getElementById('next');
-const detailBox = document.getElementById('dayDetail');
 
 let currentDate = new Date();
 const monthNames = ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
-let dayContents = {};
 
 function formatDateKey(date) {
   return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
 }
 
 async function saveDayContent(key, content) {
-  await calendarRef.doc(key).set(content);
+  await calendarRef().doc(key).set(content);
   dayContents[key] = content;
 }
 
 async function loadDayContent(key) {
-  const doc = await calendarRef.doc(key).get();
+  const doc = await calendarRef().doc(key).get();
   if (doc.exists) {
     dayContents[key] = doc.data();
     return doc.data();
@@ -505,8 +511,7 @@ nextBtn.onclick = () => {
   renderMonthWithData(currentDate);
 };
 
-// Initial render
-renderMonthWithData(currentDate);
+
 
 // Expose addTask for button
 window.addTask = addTask;
