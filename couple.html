@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Sex List</title>
   <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
-  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="couple.css" >
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="apple-touch-icon" href="sfondoRosaRossa.jpg">
-  
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Sex List">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-  <link rel="stylesheet" href="sexList.css" >
+  <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="couple.css" >
 </head>
 <body>
+<script>
+  if (!new URLSearchParams(window.location.search).get('couple') && !localStorage.getItem('coupleId')) {
+    window.location.href = "index.html";
+  }
+</script>
+
+  <!-- INCOLLA QUI TUTTO IL BODY DELLA TUA index.html (quello della tua web app) -->
+  <!-- ... -->
+  <!-- Sostituisci src="sexList.js" con src="couple.js" e src="sexList.css" con src="couple.css" -->
 
   <div id="loader">
     <video autoplay muted playsinline id="loaderVideo">
@@ -105,31 +112,28 @@
   </div>
 </div>
 
-
-  </div>
-
   <!-- Firebase App (compat) -->
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
-  <!-- Firebase Firestore (compat) -->
   <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
-
-  <script>
-    // Config Firebase
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
+  <!-- Three.js (solo una volta, PRIMA di globe.gl e three-globe) -->
+   <script>
+  // Configura Firebase PRIMA di usare firestore/auth
     const firebaseConfig = {
-      apiKey: "AIzaSyDY0aeJQiMUrJ3h_gdtvCCypQVd_PIn650",
-      authDomain: "lista-di-coppia.firebaseapp.com",
-      projectId: "lista-di-coppia",
-      storageBucket: "lista-di-coppia.firebasestorage.app",
-      messagingSenderId: "588955586283",
-      appId: "1:588955586283:web:d40e9adc9845ff2f0338ae",
-      measurementId: "G-KS8SM2Q0E9"
+        apiKey: "AIzaSyDY0aeJQiMUrJ3h_gdtvCCypQVd_PIn650",
+        authDomain: "lista-di-coppia.firebaseapp.com",
+        projectId: "lista-di-coppia",
+        storageBucket: "lista-di-coppia.firebasestorage.app",
+        messagingSenderId: "588955586283",
+        appId: "1:588955586283:web:d40e9adc9845ff2f0338ae",
+        measurementId: "G-KS8SM2Q0E9"
     };
-
-    // Inizializza Firebase
-    firebase.initializeApp(firebaseConfig);
-  </script>
-
-  <!-- Il tuo JS con la logica della app -->
-  <script src="sexList.js"></script>
+  firebase.initializeApp(firebaseConfig);
+</script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+  <script src="https://unpkg.com/three-globe"></script>
+  <script src="https://unpkg.com/globe.gl"></script>
+  <script src="authCouple.js"></script>
+  <script src="couple.js"></script>
 </body>
 </html>
