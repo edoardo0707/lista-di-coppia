@@ -6,7 +6,7 @@
   <title>Sex List - Inizia sessione privata</title>
 </head>
 <body>
-    <style>
+  <style>
     body {
       font-family: 'Parisienne', cursive;
       background-color: #f8f8f8;
@@ -18,42 +18,16 @@
       height: 100vh;
       margin: 0;
     }
-    </style>
+  </style>
   <div class="container">
     <h1>Benvenuto!</h1>
     <p>Per iniziare una sessione privata con il tuo partner:</p>
-    <button id="generateLink">Genera link privato</button>
-    <input type="text" id="linkDisplay" readonly style="display:none; width:100%; margin-top:10px;" />
-    <button id="copyLink" style="display:none;">Copia link</button>
-    <button id="startSession" style="display:none;">Vai alla sessione</button>
+    <button id="startSession">Inizia sessione</button>
   </div>
   <script>
-    const generateLinkButton = document.getElementById('generateLink');
-    const linkDisplay = document.getElementById('linkDisplay');
-    const copyButton = document.getElementById('copyLink');
-    const startSessionButton = document.getElementById('startSession');
-    let generatedLink = "";
-
-    generateLinkButton.addEventListener('click', () => {
-      const uniqueId = Math.random().toString(36).substr(2, 9);
-      generatedLink = `${window.location.origin}${window.location.pathname.replace('index.html','')}couple.html?couple=${uniqueId}`;
-      linkDisplay.value = generatedLink;
-      linkDisplay.style.display = 'block';
-      copyButton.style.display = 'inline-block';
-      startSessionButton.style.display = 'inline-block';
-    });
-
-    copyButton.addEventListener('click', () => {
-      linkDisplay.select();
-      document.execCommand('copy');
-      alert('Link copiato!');
-    });
-
-    startSessionButton.addEventListener('click', () => {
-      if (generatedLink) {
-        window.location.href = generatedLink;
-      }
-    });
+    document.getElementById('startSession').onclick = () => {
+      window.location.href = "couple.html";
+    };
   </script>
 </body>
 </html>
